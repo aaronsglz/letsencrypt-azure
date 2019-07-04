@@ -51,8 +51,12 @@ namespace LetsEncrypt.Azure.FunctionV2
             serviceCollection.AddSingleton<IKeyVaultClient>(kvClient)
             .AddKeyVaultCertificateStore(vaultBaseUrl);
 
+            // Azure DNS
+            //serviceCollection.AddAcmeClient<AzureDnsProvider>(Configuration.GetSection("DnsSettings").Get<AzureDnsSettings>());
 
-            serviceCollection.AddAcmeClient<AzureDnsProvider>(Configuration.GetSection("DnsSettings").Get<AzureDnsSettings>());
+            // GoDaddy
+            serviceCollection.AddAcmeClient<GoDaddyDnsProvider>(Configuration.GetSection("DnsSettings").Get<GoDaddyDnsProvider>());
+
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
