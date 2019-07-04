@@ -36,6 +36,7 @@
     <None Include="Scripts\Import-Certificate.ps1" />
     <None Include="Scripts\KeyVault.pfx" />
     <None Include="Scripts\New-Certificate.ps1" />
+    <None Include="Templates\letsencrypt.functionapp.renewer.godaddy.json" />
     <None Include="Templates\letsencrypt.functionapp.renewer.parameters.json" />
     <None Include="Templates\letsencrypt.functionapp.renewer.json" />
   </ItemGroup>
