@@ -11,6 +11,14 @@ namespace LetsEncrypt.Azure.Core.V2.DnsProviders
     {
         private readonly HttpClient httpClient;
 
+        public GoDaddyDnsProvider()
+        {
+            httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri($"https://api.godaddy.com/v1/domains/{Environment.GetEnvironmentVariable("GoDaddyDomain")}/");
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $"sso-key {Environment.GetEnvironmentVariable("GoDaddyApiKey")}:{Environment.GetEnvironmentVariable("GoDaddyApiSecret")}");
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Shopper-Id", Environment.GetEnvironmentVariable("GoDaddyShopperId"));
+        }
+
         public GoDaddyDnsProvider(GoDaddyDnsSettings settings)
         {
             this.httpClient = new HttpClient();
